@@ -26,7 +26,10 @@ RUN	apk update && \
 	mkdir /www && \
 	apk del tzdata && \
 	rm -rf /var/cache/apk/*
-
+	
+RUN set -x \
+	&& adduser -u 82 -D -S -G www-data www-data
+	
 COPY etc/nginx.conf /etc/nginx/nginx.conf
 COPY etc/common.conf /etc/nginx/common.conf
 COPY etc/conf.d/default.conf /etc/nginx/conf.d/default.conf
